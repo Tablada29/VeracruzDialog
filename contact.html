@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Contáctanos</title>
+  <!-- icono de pestaña -->
+  <link rel="icon" type="image/png" href="images/Editadas/logodialoga.png">
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+  <div class="div">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/Editadas/logodialoga.png" alt="50"> 
+          </a><a class="navbar-brand" href="index.html">
+            <span>
+              Veracruz Dialoga
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="quienesomos.html">¿Quiénes somos? </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="proposito.html">Propósito General</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="objetivo.html">Objetivo</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="dirigido.html"> A quien va dirigido </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contáctanos</a>
+                </li>
+              </ul>
+            </div>
+           
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+  </div>
+
+
+ <!-- captchapt section -->
+
+ <section class="about_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="img-box">
+          <img class="" src="images/imgfree/contacto.jpg" alt="">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="img-box">
+          <div class=" text-center">
+            <div class="text-center">
+              <h3>Contáctanos</h3>
+            </div>
+            <h3>¡Captura el siguiente Captcha e ingresa tu información!</h3>
+           
+            <div class="input_field captch_box">
+              <input type="text" value="" disabled />
+              <button class="refresh_button">
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+            </div>
+            <div class="input_field captch_input">
+              <input type="text" placeholder="Enter captcha" />
+            </div>
+            <div class="message">Entered captcha is correct</div>
+            <div class="input_field button disabled">
+              <button>Enviar Captcha</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <script>
+    const captchaTextBox = document.querySelector(".captch_box input");
+    const refreshButton = document.querySelector(".refresh_button");
+    const captchaInputBox = document.querySelector(".captch_input input");
+    const message = document.querySelector(".message");
+    const submitButton = document.querySelector(".button");
+    let captchaText = null;
+
+    const generateCaptcha = () => {
+      const randomString = Math.random().toString(36).substring(2, 7);
+      const randomStringArray = randomString.split("");
+      const changeString = randomStringArray.map((char) => (Math.random() > 0.5 ? char.toUpperCase() : char));
+      captchaText = changeString.join("   ");
+      captchaTextBox.value = captchaText;
+    };
+
+    const refreshBtnClick = () => {
+      generateCaptcha();
+      captchaInputBox.value = "";
+      captchaKeyUpValidate();
+    };
+
+    const captchaKeyUpValidate = () => {
+      submitButton.classList.toggle("disabled", !captchaInputBox.value);
+      if (!captchaInputBox.value) message.classList.remove("active");
+    };
+
+    const submitBtnClick = () => {
+captchaText = captchaText
+  .split("")
+  .filter((char) => char !== " ")
+  .join("");
+message.classList.add("active");
+
+if (captchaInputBox.value === captchaText) {
+  message.innerHTML = "Captcha ingresado es Correcto.<br><br>Link para registrar tus datos: <a href='https://forms.gle/5x7Nm9YKx5X5N6zy5'>Registrarse</a>"; 
+  message.style.color = "#826afb";
+
+  // Eliminar la clase 'disabled' del botón
+  submitButton.classList.remove("disabled");
+} else {
+  message.innerText = "Captcha ingresado no es Correcto.";
+  message.style.color = "#FF2525";
+}
+};
+
+    refreshButton.addEventListener("click", refreshBtnClick);
+    captchaInputBox.addEventListener("keyup", captchaKeyUpValidate);
+    submitButton.addEventListener("click", submitBtnClick);
+    generateCaptcha();
+  </script>
+</section>
+
+
+<!-- end captchat section -->
+
+<!-- info section -->
+<section class="info_section layout_padding2">
+  <div class="container">
+    <div class="info_items">
+      <a href="https://maps.app.goo.gl/69aZG832nvFq2gyL6" target='_blank'>
+        <div class="item ">
+          <div class="img-box box-1">
+            <img src="" alt="">
+          </div>
+          <div class="detail-box">
+            <p>
+              Veracruz, México.
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="http://api.whatsapp.com/send?phone=5212289791763" target='_blank'>
+        <div class="item ">
+          <div class="img-box box-2">
+            <img src="" alt="">
+          </div>
+          <div class="detail-box">
+            <p>
+              +52 1 2289791763
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="mailto:veracruzdialoga@gmail.com" target='_blank'>
+        <div class="item">
+          <div class="img-box box-3">
+            <img src="" alt="">
+          </div>
+          <div class="detail-box">
+            <p>
+              veracruzdialoga@gmail.com
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- end info_section -->
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy; 2019 All Rights Reserved By
+      <a href="https://html.design/">Free Html Templates</a>
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeKdVspAAAAAMGiS9RNRXoZau YmpTR07hHGDckr"></script> ```
+
+
+</body>
+
+</html>
